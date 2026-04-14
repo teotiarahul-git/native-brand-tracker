@@ -1,0 +1,62 @@
+{
+  "category_id": "instahelp",
+  "display_name": "InstaHelp (House Help)",
+  "description": "Urban Company house help/maid service. Launched Feb 2026 as Instamaids, rebranded to InstaHelp.",
+  "google_sheet_id": "1tbTB6OCa7GUXpoNscSfLMm5-kdPwed45TsS40nQwV-g",
+  "google_sheet_url": "https://docs.google.com/spreadsheets/d/1tbTB6OCa7GUXpoNscSfLMm5-kdPwed45TsS40nQwV-g",
+  "gsc_site_url": "https://www.urbancompany.com/",
+  "google_ads_customer_id": "4868735624",
+  "data_start_date": "2025-03-01",
+  "geos": [
+    "india"
+  ],
+  "geos_full": [
+    "india",
+    "delhi",
+    "bangalore",
+    "mumbai",
+    "hyderabad",
+    "pune",
+    "chennai",
+    "kolkata"
+  ],
+  "brands": [
+    "instahelp",
+    "snabbit",
+    "pronto"
+  ],
+  "keywords_file": "keywords/instahelp.json",
+  "trends_sets": {
+    "direct_competition": {
+      "label": "Direct Competition (InstaHelp vs Snabbit vs Pronto)",
+      "terms": [
+        "insta help",
+        "snabbit",
+        "instahelp",
+        "pronto maid"
+      ]
+    },
+    "category_view": {
+      "label": "Category View (InstaHelp vs Market Demand)",
+      "terms": [
+        "insta help",
+        "snabbit",
+        "maid service app",
+        "domestic help"
+      ]
+    }
+  },
+  "gsc_branded_filters": [
+    "instahelp",
+    "instamaids",
+    "urban company maid",
+    "uc maid",
+    "urban company house help"
+  ],
+  "gsc_page_filters": [
+    "/instahelp",
+    "/maid-service",
+    "/house-help"
+  ],
+  "slack_channel_id": ""
+}

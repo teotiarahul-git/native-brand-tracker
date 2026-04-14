@@ -1,0 +1,36 @@
+# Credentials & secrets
+.config/
+*.json.bak
+token.json
+credentials.json
+google-ads.yaml
+
+# Streamlit secrets (cloud deployment)
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output artifacts
+.claude/skills/brand-tracker/output/
+data/amazon_pi/*.json
+
+# Claude internal
+.claude/

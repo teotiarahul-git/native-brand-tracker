@@ -1,0 +1,48 @@
+{
+  "india": {
+    "trends_geo": "IN",
+    "ads_criterion_id": 2356,
+    "label": "All India"
+  },
+  "delhi": {
+    "trends_geo": "IN-DL",
+    "ads_criterion_id": 1007768,
+    "label": "Delhi"
+  },
+  "bangalore": {
+    "trends_geo": "IN-KA",
+    "ads_criterion_id": 1007759,
+    "label": "Bangalore",
+    "note": "Trends uses state-level IN-KA (Karnataka)"
+  },
+  "mumbai": {
+    "trends_geo": "IN-MH",
+    "ads_criterion_id": 1007785,
+    "label": "Mumbai",
+    "note": "Trends uses state-level IN-MH (Maharashtra), shared with Pune"
+  },
+  "hyderabad": {
+    "trends_geo": "IN-TG",
+    "ads_criterion_id": 1007773,
+    "label": "Hyderabad",
+    "note": "Trends uses state-level IN-TG (Telangana)"
+  },
+  "pune": {
+    "trends_geo": "IN-MH",
+    "ads_criterion_id": 1007790,
+    "label": "Pune",
+    "note": "Trends uses same IN-MH as Mumbai. Keyword Planner can target Pune city directly."
+  },
+  "chennai": {
+    "trends_geo": "IN-TN",
+    "ads_criterion_id": 1007764,
+    "label": "Chennai",
+    "note": "Trends uses state-level IN-TN (Tamil Nadu)"
+  },
+  "kolkata": {
+    "trends_geo": "IN-WB",
+    "ads_criterion_id": 1007778,
+    "label": "Kolkata",
+    "note": "Trends uses state-level IN-WB (West Bengal)"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "category_id": "native",
+  "display_name": "Native (Water Purifiers)",
+  "description": "Urban Company water purifier brand. Tracked since 2024.",
+  "google_sheet_id": "12HNTmriAjM-BBCF6YjgIk_AwL-akC3QKkM2bkh249fs",
+  "google_sheet_url": "https://docs.google.com/spreadsheets/d/12HNTmriAjM-BBCF6YjgIk_AwL-akC3QKkM2bkh249fs",
+  "gsc_site_url": "https://www.urbancompany.com/",
+  "google_ads_customer_id": "4868735624",
+  "data_start_date": "2024-01-01",
+  "geos": ["india"],
+  "brands": ["native", "aquaguard", "kent", "atomberg"],
+  "keywords_file": "keywords/native.json",
+  "trends_sets": {
+    "challenger": {
+      "label": "Challenger View (Native vs Atomberg)",
+      "terms": ["native water purifier", "atomberg intellon", "atomberg water purifier", "uc water purifier"]
+    },
+    "full_market": {
+      "label": "Full Market View (Native vs Aquaguard, Kent, Atomberg)",
+      "terms": ["native water purifier", "aquaguard water purifier", "kent water purifier", "atomberg water purifier"]
+    }
+  },
+  "gsc_branded_filters": ["native", "uc water", "urban company water"],
+  "gsc_page_filters": ["/native-ro-water-purifier", "/near-me/ro-purchase-near-me"],
+  "amazon_pi": {
+    "enabled": true,
+    "brand_name": "Native by UC",
+    "pi_category": "Water Filters & Purifiers",
+    "pi_subcategory": "Water Purifier",
+    "pi_url": "https://pi.amazon.in/reports/sp",
+    "competitor_mapping": {
+      "rank_1": "Aquaguard",
+      "rank_2": "Kent",
+      "rank_3": "Native"
+    },
+    "data_dir": "data/amazon_pi"
+  },
+  "slack_channel_id": ""
+}

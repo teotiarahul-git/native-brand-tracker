@@ -1,0 +1,116 @@
+{
+  "brands": {
+    "instahelp": {
+      "display_name": "InstaHelp (Urban Company)",
+      "short_code": "INSTAHELP",
+      "include": [
+        "insta help",
+        "instahelp",
+        "insta help urban company",
+        "insta help app",
+        "insta help maid",
+        "insta help price",
+        "insta help review",
+        "insta help near me",
+        "insta help house help",
+        "urban company insta help",
+        "urban company maid",
+        "urban company house help",
+        "urban company cook",
+        "uc insta help",
+        "uc maid service",
+        "uc house help",
+        "insta maids",
+        "instamaids",
+        "insta maids urban company",
+        "urban company insta maids"
+      ],
+      "exclude": [
+        "instagram help",
+        "instagram",
+        "insta help center",
+        "instagram support",
+        "instagram account",
+        "instagram login"
+      ],
+      "_notes": "Validated Apr 2026: 'insta help' (2 words) is THE primary search term (avg index 32). Related queries confirm 100% UC signal. 'instahelp' (1 word) gets ~7x less traffic. 'insta maids' nearly dead after rebrand."
+    },
+    "snabbit": {
+      "display_name": "Snabbit",
+      "short_code": "SNABBIT",
+      "include": [
+        "snabbit",
+        "snabbit app",
+        "snabbit maid",
+        "snabbit house help",
+        "snabbit cook",
+        "snabbit cleaner",
+        "snabbit price",
+        "snabbit review",
+        "snabbit home services",
+        "snabbit near me"
+      ],
+      "exclude": [
+        "snabbit complaint",
+        "snabbit fraud",
+        "snabbit refund"
+      ]
+    },
+    "pronto": {
+      "display_name": "Pronto",
+      "short_code": "PRONTO",
+      "include": [
+        "pronto maid",
+        "pronto app",
+        "pronto house help",
+        "pronto maid service",
+        "pronto home help",
+        "pronto cook service",
+        "pronto cleaner",
+        "pronto app maid",
+        "pronto maid service review",
+        "pronto near me"
+      ],
+      "exclude": [
+        "pronto complaint",
+        "pronto pizza",
+        "pronto pasta",
+        "pronto restaurant",
+        "pronto cafe",
+        "pronto coffee"
+      ]
+    }
+  },
+  "category_baseline": [
+    "maid service",
+    "house help",
+    "house maid near me",
+    "cook for home",
+    "maid booking app",
+    "domestic help",
+    "part time maid",
+    "full time maid",
+    "house help app",
+    "maid service app",
+    "domestic help near me",
+    "maid near me",
+    "house cleaning service"
+  ],
+  "trends_sets": {
+    "direct_competition": {
+      "label": "Direct Competition (InstaHelp vs Snabbit vs Pronto)",
+      "terms": ["insta help", "snabbit", "instahelp", "pronto maid"],
+      "_notes": "Validated Apr 2026: 'insta help' avg=32, 'snabbit' avg=8, 'instahelp' avg=4, 'pronto maid' avg=3. Related queries for 'insta help' confirm 100% UC signal."
+    },
+    "category_view": {
+      "label": "Category View (InstaHelp vs Market Demand)",
+      "terms": ["insta help", "snabbit", "maid service app", "domestic help"],
+      "_notes": "'domestic help' avg=39 is the strongest unbranded term."
+    }
+  },
+  "intent_classification": {
+    "purchase_price": ["buy", "price", "cost", "offer", "discount"],
+    "consideration": ["review", "vs ", "compare", "better"],
+    "awareness": "default"
+  }
+}
