@@ -29,30 +29,52 @@ def get_sheets_client():
     try:
         if "gcp_service_account" in st.secrets:
             from google.oauth2.service_account import Credentials as SACredentials
+            sa_info = dict(st.secrets["gcp_service_account"])
             creds = SACredentials.from_service_account_info(
-                st.secrets["gcp_service_account"],
+                sa_info,
                 scopes=[
                     "https://www.googleapis.com/auth/spreadsheets",
                     "https://www.googleapis.com/auth/drive.readonly",
                 ],
             )
             return gspread.authorize(creds)
-    except Exception:
-        pass
+    except Exception as e:
+        st.sidebar.warning(f"Service account auth failed: {e}")
 
     # Cloud fallback: OAuth token in st.secrets
     try:
         if "gcp_oauth_token" in st.secrets:
             token_data = dict(st.secrets["gcp_oauth_token"])
+            # Ensure scopes is a proper list (TOML may parse it differently)
+            if "scopes" in token_data and isinstance(token_data["scopes"], str):
+                token_data["scopes"] = [token_data["scopes"]]
+            elif "scopes" not in token_data:
+                token_data["scopes"] = [
+                    "https://www.googleapis.com/auth/spreadsheets",
+                    "https://www.googleapis.com/auth/drive.readonly",
+                ]
             creds = Credentials.from_authorized_user_info(token_data)
+            # Force token refresh if expired
+            if creds.expired and creds.refresh_token:
+                import google.auth.transport.requests
+                creds.refresh(google.auth.transport.requests.Request())
             return gspread.authorize(creds)
-    except Exception:
-        pass
+    except Exception as e:
+        st.sidebar.warning(f"OAuth token auth failed: {e}")
 
     # Local: file-based token
-    token_file = os.path.join(CONFIG_DIR, "token.json")
-    creds = Credentials.from_authorized_user_file(token_file)
-    return gspread.authorize(creds)
+    try:
+        token_file = os.path.join(CONFIG_DIR, "token.json")
+        creds = Credentials.from_authorized_user_file(token_file)
+        return gspread.authorize(creds)
+    except Exception as e:
+        st.error(
+            "**Could not connect to Google Sheets.**\n\n"
+            "If running on Streamlit Cloud, add your credentials in "
+            "Settings → Secrets. See `.streamlit/secrets.toml.example` for the format.\n\n"
+            f"Error: `{e}`"
+        )
+        st.stop()
 
 
 @st.cache_data(ttl=300)  # Cache for 5 minutes
