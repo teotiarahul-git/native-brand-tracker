@@ -56,27 +56,23 @@ def get_sheets_client():
         if "gcp_oauth_token" in st.secrets:
             token_data = dict(st.secrets["gcp_oauth_token"])
 
-            SCOPES = [
-                "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/drive.readonly",
-            ]
-
-            # Build credentials manually to ensure correct scopes
+            # Build credentials without scopes — let the refresh token
+            # use whatever scopes it was originally granted
             creds = Credentials(
                 token=token_data.get("token", ""),
                 refresh_token=token_data.get("refresh_token"),
                 token_uri=token_data.get("token_uri", "https://oauth2.googleapis.com/token"),
                 client_id=token_data.get("client_id"),
                 client_secret=token_data.get("client_secret"),
-                scopes=SCOPES,
             )
 
-            # Force token refresh
-            if creds.refresh_token:
-                import google.auth.transport.requests
-                creds.refresh(google.auth.transport.requests.Request())
+            # Refresh to get a valid access token
+            import google.auth.transport.requests
+            creds.refresh(google.auth.transport.requests.Request())
 
-            return gspread.authorize(creds)
+            gc = gspread.Client(auth=creds)
+            gc.http_client.auth = creds
+            return gc
     except Exception as e:
         st.sidebar.warning(f"OAuth token auth failed: {e}")
 
