@@ -25,6 +25,16 @@ def get_sheets_client():
     Tries Streamlit secrets first (cloud deploy), then falls back to
     local token.json file (local development).
     """
+    # Debug: show what secrets are available (keys only, no values)
+    try:
+        available_keys = list(st.secrets.keys()) if hasattr(st.secrets, 'keys') else []
+        if available_keys:
+            st.sidebar.info(f"Secrets detected: {available_keys}")
+        else:
+            st.sidebar.warning("No secrets found. Add credentials in Settings → Secrets.")
+    except Exception:
+        st.sidebar.warning("Could not read secrets.")
+
     # Cloud: service account credentials in st.secrets
     try:
         if "gcp_service_account" in st.secrets:
