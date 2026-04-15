@@ -1,0 +1,11 @@
+.git
+.config/
+.claude/
+data/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+*.md
+.streamlit/secrets.toml
