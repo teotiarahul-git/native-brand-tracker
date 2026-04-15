@@ -55,19 +55,27 @@ def get_sheets_client():
     try:
         if "gcp_oauth_token" in st.secrets:
             token_data = dict(st.secrets["gcp_oauth_token"])
-            # Ensure scopes is a proper list (TOML may parse it differently)
-            if "scopes" in token_data and isinstance(token_data["scopes"], str):
-                token_data["scopes"] = [token_data["scopes"]]
-            elif "scopes" not in token_data:
-                token_data["scopes"] = [
-                    "https://www.googleapis.com/auth/spreadsheets",
-                    "https://www.googleapis.com/auth/drive.readonly",
-                ]
-            creds = Credentials.from_authorized_user_info(token_data)
-            # Force token refresh if expired
-            if creds.expired and creds.refresh_token:
+
+            SCOPES = [
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive.readonly",
+            ]
+
+            # Build credentials manually to ensure correct scopes
+            creds = Credentials(
+                token=token_data.get("token", ""),
+                refresh_token=token_data.get("refresh_token"),
+                token_uri=token_data.get("token_uri", "https://oauth2.googleapis.com/token"),
+                client_id=token_data.get("client_id"),
+                client_secret=token_data.get("client_secret"),
+                scopes=SCOPES,
+            )
+
+            # Force token refresh
+            if creds.refresh_token:
                 import google.auth.transport.requests
                 creds.refresh(google.auth.transport.requests.Request())
+
             return gspread.authorize(creds)
     except Exception as e:
         st.sidebar.warning(f"OAuth token auth failed: {e}")
