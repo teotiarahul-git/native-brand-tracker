@@ -16,7 +16,7 @@ sys.path.insert(0, SCRIPT_DIR)
 
 from sheets_client import load_category_config, open_category_sheet
 
-DASHBOARD_URL = "https://native-brand-tracker.streamlit.app/native"
+DASHBOARD_URL = "https://native-brand-tracker-native.streamlit.app/native"
 
 
 def _safe_float(val, default=0.0):
@@ -62,31 +62,34 @@ def main():
             latest = trends_data[-1]
             prev = trends_data[-2]
 
-            # Find key columns
-            def _find_col(keyword):
+            # Find pre-computed 4-week average columns (exact match)
+            def _find_col_exact(keyword):
                 for i, h in enumerate(headers):
-                    if keyword in h.lower():
+                    if keyword.lower() == h.lower().strip():
                         return i
                 return None
 
-            native_i = _find_col("native water")
-            aqua_i = _find_col("aquaguard water")
-            kent_i = _find_col("kent water")
+            def _find_col_contains(keyword):
+                for i, h in enumerate(headers):
+                    if keyword.lower() in h.lower():
+                        return i
+                return None
+
+            # Use pre-computed 4wk avg columns from the sheet
+            aqua_4wk_i = _find_col_contains("(%)aqua (4wk avg)")
+            kent_4wk_i = _find_col_contains("(%)kent (4wk avg)")
+            atom_4wk_i = _find_col_contains("(%)atomberg (4wk avg)")
 
             report_lines.append("*Google: Native vs Competitors (Weekly, 4-Week Moving Avg)*")
 
-            if native_i and aqua_i:
-                n_now, a_now = _safe_float(latest[native_i]), _safe_float(latest[aqua_i])
-                n_prev, a_prev = _safe_float(prev[native_i]), _safe_float(prev[aqua_i])
-                pct_now = round(n_now / a_now * 100, 1) if a_now > 0 else 0
-                pct_prev = round(n_prev / a_prev * 100, 1) if a_prev > 0 else 0
+            if aqua_4wk_i:
+                pct_now = _safe_float(latest[aqua_4wk_i])
+                pct_prev = _safe_float(prev[aqua_4wk_i])
                 report_lines.append(f"• Native as % of Aquaguard: *{pct_now:.0f}%* ({_delta_str(pct_now, pct_prev)} WoW)")
 
-            if native_i and kent_i:
-                n_now, k_now = _safe_float(latest[native_i]), _safe_float(latest[kent_i])
-                n_prev, k_prev = _safe_float(prev[native_i]), _safe_float(prev[kent_i])
-                pct_now = round(n_now / k_now * 100, 1) if k_now > 0 else 0
-                pct_prev = round(n_prev / k_prev * 100, 1) if k_prev > 0 else 0
+            if kent_4wk_i:
+                pct_now = _safe_float(latest[kent_4wk_i])
+                pct_prev = _safe_float(prev[kent_4wk_i])
                 report_lines.append(f"• Native as % of Kent: *{pct_now:.0f}%* ({_delta_str(pct_now, pct_prev)} WoW)")
 
             report_lines.append("")
